@@ -18,26 +18,24 @@ const CarouselWithCaptionsExample = () => {
     });
   }, []);
 
-  const items = popularMovies.slice(4, 8).map((item) => (
+  const items = popularMovies.slice(4, 7).map((item) => (
     <CCarouselItem>
-      <Link to={`/detail/${item.id}`}>
-        <CImage
-          className="w-full h-[500px] mx-auto object-center rounded-lg"
-          src={`${movieLink}/${item.poster_path}`}
-          alt="slide 1"
-        />
-        <CCarouselCaption className="d-none d-md-block z-10">
-          <h5 className="text-2xl">{item.title}</h5>
-          <p className="line-clamp-3 text-sm">{item.overview}</p>
-        </CCarouselCaption>
-      </Link>
+      <CImage
+        className="w-full h-[500px] mx-auto object-center rounded-lg"
+        src={`${movieLink}/${item.poster_path}`}
+        alt="slide 1"
+      />
+      <CCarouselCaption className="d-none d-md-block z-10">
+        <h5 className="text-2xl">{item.title}</h5>
+        <p className="line-clamp-3 text-sm">{item.overview}</p>
+      </CCarouselCaption>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     </CCarouselItem>
   ));
 
   return (
     <CCarousel className="w-[65%] mx-auto relative" controls indicators>
       {items}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     </CCarousel>
   );
 };

@@ -1,21 +1,24 @@
+import { useEffect, useRef, useState } from "react";
 import Search from "../Elements/Input/Search";
 
 const Navbar = (props) => {
   const { onChange } = props;
   const username = localStorage.getItem("login");
+  const [logout, setLogout] = useState({ isClick: false });
 
   return (
     <>
       <nav className="w-full bg-gray-800 fixed z-50">
-        <div className="container mx-auto p-4 flex items-center justify-between">
+        <div className="container mx-auto py-4 px-0 flex items-center justify-between">
           <div>
             <h1 className="text-white text-2xl font-bold">Daffa's Movies</h1>
           </div>
           <div className="w-96">
             <Search onChange={onChange}></Search>
           </div>
+
           <div className="flex items-center gap-3">
-            <div>
+            <div className="cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -27,6 +30,17 @@ const Navbar = (props) => {
               </svg>
             </div>
             <div className="text-white">{username}</div>
+            <div
+              onClick={() => {
+                localStorage.removeItem("login");
+                window.location.href = "/login";
+              }}
+              className="bg-red-500 text-white w-24 rounded-lg shadow-lg group-hover:block"
+            >
+              <button className="text-center w-full p-2 hover:bg-red-700 rounded-md">
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </nav>
